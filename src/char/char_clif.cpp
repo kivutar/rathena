@@ -1478,6 +1478,10 @@ TIMER_FUNC(charblock_timer){
  * <GID>L <szExpireDate>20B (TAG_CHARACTER_BLOCK_INFO)
  */
 void chclif_block_character( int32 fd, char_session_data& sd){
+#if defined(PACKETVER_SAK_NUM) && PACKETVER_SAK_NUM > 0 && PACKETVER_SAK_NUM < 20090225
+	return;
+#endif
+
 	time_t now = time( nullptr );
 
 	PACKET_HC_BLOCK_CHARACTER* p = reinterpret_cast<PACKET_HC_BLOCK_CHARACTER*>( packet_buffer );
